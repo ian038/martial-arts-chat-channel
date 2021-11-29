@@ -21,13 +21,22 @@ const SideBar = ({ logout }) => (
     </div>
 )
 
-const CompanyHeader = ({ isCreating, setIsCreating, setCreateType, setIsEditing, setToggleContainer }) => (
+const CompanyHeader = () => (
     <div className="channel-list__header">
         <p className="channel-list__header__text">Martial Arts Channel</p>
     </div>
 )
 
-export default function ChannelListContainer() {
+const customChannelTeamFilter = (channels) => {
+    return channels.filter((channel) => channel.type === 'team');
+}
+
+const customChannelMessagingFilter = (channels) => {
+    return channels.filter((channel) => channel.type === 'messaging');
+}
+
+export default function ChannelListContainer({ isCreating, setIsCreating, setCreateType, setIsEditing, setToggleContainer }) {
+    const { client } = useChatContext()
     const filters = { members: { $in: [client.userID] } }
 
     return (
