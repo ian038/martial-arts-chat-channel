@@ -21,18 +21,45 @@ const SideBar = ({ logout }) => (
     </div>
 )
 
-const CompanyHeader = () => (
+const CompanyHeader = ({ isCreating, setIsCreating, setCreateType, setIsEditing, setToggleContainer }) => (
     <div className="channel-list__header">
         <p className="channel-list__header__text">Martial Arts Channel</p>
     </div>
 )
 
 export default function ChannelListContainer() {
+    const filters = { members: { $in: [client.userID] } }
+
     return (
         <>
             <SideBar />
             <div className="channel-list__list__wrapper">
                 <CompanyHeader />
+                <ChannelSearch />
+                <ChannelList 
+                    filters={filters}
+                    channelRenderFilterFn={customChannelTeamFilter}
+                    List={(listProps) => (
+                        <TeamChannelList 
+                            {...listProps}
+                            type="team"
+                            isCreating={isCreating}
+                            setIsCreating={setIsCreating}
+                            setCreateType={setCreateType} 
+                            setIsEditing={setIsEditing}
+                            setToggleContainer={setToggleContainer}
+                        />
+                    )}
+                    Preview={(previewProps) => (
+                        <TeamChannelPreview 
+                            {...previewProps}
+                            setIsCreating={setIsCreating}
+                            setIsEditing={setIsEditing}
+                            setToggleContainer={setToggleContainer}
+                            type="team"
+                        />
+                    )}
+                />
             </div>
         </>
     )

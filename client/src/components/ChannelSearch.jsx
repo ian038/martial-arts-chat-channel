@@ -7,12 +7,33 @@ export default function ChannelSearch({ setToggleContainer }) {
     const [query, setQuery] = useState('')
     const [loading, setLoading] = useState(false)
 
+    const getChannels = async (text) => {
+        try {
+            // const channelResponse = client.queryChannels({
+            //     type: 'team', 
+            //     name: { $autocomplete: text }, 
+            //     members: { $in: [client.userID]}
+            // });
+            // const userResponse = client.queryUsers({
+            //     id: { $ne: client.userID },
+            //     name: { $autocomplete: text }
+            // })
+
+            // const [channels, { users }] = await Promise.all([channelResponse, userResponse]);
+
+            // if(channels.length) setTeamChannels(channels);
+            // if(users.length) setDirectChannels(users);
+        } catch (error) {
+            setQuery('')
+        }
+    }
+
     const onSearch = (e) => {
         e.preventDefault();
 
         setLoading(true)
         setQuery(e.target.value)
-        // getChannels(e.target.value)
+        getChannels(e.target.value)
     }
 
     return (
