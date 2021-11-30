@@ -27,7 +27,7 @@ const signup = async (req, res) => {
 
         res.status(500).json({ message: error })
     }
-};
+}
 
 const login = async (req, res) => {
     try {
