@@ -19,7 +19,9 @@ export default function Auth() {
     const [form, setForm] = useState(initialState)
     const [isSignup, setIsSignup] = useState(false);
 
-    const handleChange = e => {}
+    const handleChange = e => {
+        setForm({ ...form, [e.target.name]: e.target.value })
+    }
 
     const handleSubmit = e => {
         e.preventDefault()
