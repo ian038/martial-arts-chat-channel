@@ -44,8 +44,9 @@ function App() {
         <ChannelContainer 
           isCreating={isCreating}
           setIsCreating={setIsCreating}
-          setCreateType={setCreateType}
+          isEditing={isEditing}
           setIsEditing={setIsEditing}
+          createType={createType}
         />
       </Chat>
     </div>
